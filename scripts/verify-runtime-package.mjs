@@ -11,8 +11,8 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
 const DEFAULT_PACKAGE_DIR = path.join(ROOT, "dist", "vault-runtime");
 const EXPECTED_PACKAGE_NAME = "@flapsdk/vault-runtime";
-const EXPECTED_EXPORTS = ["./sdk", "./ui", "./host", "./server", "./runtime-contract", "./package.json"];
-const EXPECTED_FILES = ["sdk.js", "sdk.d.mts", "host.js", "host.d.mts", "server.js", "server.d.mts", "ui.js", "ui.d.mts", "package.json", "runtime-contract.json", "README.md"];
+const EXPECTED_EXPORTS = ["./sdk", "./ui", "./host", "./server", "./runtime-contract", "./package.json", "./compute-worker"];
+const EXPECTED_FILES = ["sdk.js", "sdk.d.mts", "host.js", "host.d.mts", "server.js", "server.d.mts", "ui.js", "ui.d.mts", "package.json", "runtime-contract.json", "README.md", "compute-worker.js", "compute-worker.d.mts"];
 
 async function ensureFile(filePath) {
   await access(filePath);

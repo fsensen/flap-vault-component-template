@@ -4,6 +4,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
 import { fileURLToPath } from "node:url";
+import { buildComputeWorker } from "./build-compute-worker.mjs";
 import { assertTemplateFresh } from "./check-template-fresh.mjs";
 import { createRuntimePackageIdentity, parseRuntimePackageMode } from "./runtime-package-mode.mjs";
 
@@ -59,6 +60,8 @@ async function main() {
     stdio: "inherit",
   });
 
+  await buildComputeWorker(ROOT, OUT_DIR);
+
   const rootPackage = await readJson(path.join(ROOT, "package.json"));
   const gitHead = execFileSync("git", ["rev-parse", "HEAD"], {
     cwd: ROOT,
@@ -97,6 +100,7 @@ async function main() {
         types: "./server.d.mts",
         import: "./server.js",
       },
+      "./compute-worker": { types: "./compute-worker.d.mts", import: "./compute-worker.js" },
       "./runtime-contract": "./runtime-contract.json",
       "./package.json": "./package.json",
     },
@@ -119,7 +123,7 @@ async function main() {
     packageVersion: packageIdentity.version,
     stableAuthoringAliases: ["@/src/sdk", "@/src/ui"],
     componentFacingEntrypoints: ["./sdk", "./ui"],
-    hostFacingEntrypoints: ["./host", "./server"],
+    hostFacingEntrypoints: ["./host", "./server", "./compute-worker"],
     runtimeExternals: RUNTIME_EXTERNALS,
     notes: "Vault source keeps authoring aliases. Workbench/flap.sh should rewrite or externalize those aliases to these package subpaths.",
   };

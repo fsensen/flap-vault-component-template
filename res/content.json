@@ -591,5 +591,27 @@
     "addressCopied": "Address copied",
     "tokenUnavailableTitle": "Token unavailable",
     "tokenUnavailableDescription": "This token cannot be loaded in the preview. Ask the developer to check the token CA, chain, and manifest factory/Vault binding before using this Vault UI."
+  },
+  "powDemo": {
+    "title": "CPU PoW · local SDK test",
+    "note": "Synthetic demo data · no wallet transaction · one worker · stops after 30 seconds or when hidden.",
+    "start": "Start CPU test",
+    "stop": "Stop",
+    "reset": "Reset host context",
+    "hashes": "Hashes",
+    "verified": "Verified results",
+    "heartbeat": "UI heartbeat",
+    "status": "Status",
+    "ready": "Ready",
+    "running": "Running",
+    "stopped": "Stopped",
+    "completed": "Budget completed",
+    "error": "Error",
+    "language": "中文",
+    "scope": "Host-approved demo scope: chain 97",
+    "loading": "Preparing runtime",
+    "unavailable": "Compute unavailable",
+    "nonce": "Latest verified nonce",
+    "digest": "Full Keccak-256 digest"
   }
 }

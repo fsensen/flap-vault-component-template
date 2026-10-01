@@ -34,6 +34,9 @@ import { readContractEventsInBlockRanges } from "./contractEvents";
 
 export { useFlapI18n, useFlapNotify, useFlapSdk, useVaultContext } from "./runtimeStore";
 
+import { unavailableCompute } from "./compute";
+import type { FlapCompute } from "./compute";
+
 type ToastLevel = "info" | "success" | "warning" | "error";
 
 interface ToastItem {
@@ -43,6 +46,8 @@ interface ToastItem {
 }
 
 interface RuntimeProviderProps {
+  /** Supplied only by a host that approved the fixed compute profile. */
+  compute?: FlapCompute;
   children: ReactNode;
   manifest: VaultManifest;
   i18n: Record<string, Record<string, string>>;
@@ -83,7 +88,7 @@ function getPreviewOracleEndpoint(extraConfig: Record<string, unknown> | undefin
   return typeof endpoint === "string" ? endpoint : undefined;
 }
 
-export function VaultRuntimeProvider({ children, manifest, i18n, runtimeContext: runtimeOverrides, hostRuntimeResult, locale = "en", oracleReader, nftMetadataReader }: RuntimeProviderProps) {
+export function VaultRuntimeProvider({ children, manifest, i18n, runtimeContext: runtimeOverrides, hostRuntimeResult, locale = "en", oracleReader, nftMetadataReader, compute }: RuntimeProviderProps) {
   const [version, setVersion] = useState(0);
   const [messages, setMessages] = useState<ToastItem[]>([]);
   const toastTimersRef = useRef<Map<number, number>>(new Map());
@@ -435,6 +440,7 @@ export function VaultRuntimeProvider({ children, manifest, i18n, runtimeContext:
 
   const sdk = useMemo<FlapVaultSdk>(
     () => ({
+      compute: compute ?? unavailableCompute,
       context: runtimeContext,
       i18n: i18nApi,
       notify,
@@ -452,7 +458,7 @@ export function VaultRuntimeProvider({ children, manifest, i18n, runtimeContext:
       refetchNonce: version,
       openExplorerTx,
     }),
-    [getBlockNumber, getContractEvents, getGasPrice, i18nApi, notify, openExplorerTx, readContract, readNftMetadata, readOracle, refetch, runtimeContext, simulateContract, version, waitForTx, wallet, writeContract],
+    [compute, getBlockNumber, getContractEvents, getGasPrice, i18nApi, notify, openExplorerTx, readContract, readNftMetadata, readOracle, refetch, runtimeContext, simulateContract, version, waitForTx, wallet, writeContract],
   );
 
   return (

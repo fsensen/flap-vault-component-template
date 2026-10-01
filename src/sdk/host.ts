@@ -10,3 +10,6 @@ export * from "./runtimeContext";
 export * from "./taxInfo";
 export * from "./txError";
 export * from "./types";
+
+export { createPowComputeHost, POW_WORKER_PATH } from "../compute/host";
+export type { PowHostPolicy } from "../compute/host";

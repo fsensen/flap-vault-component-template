@@ -79,6 +79,25 @@
         "maxFontBytes": 2097152,
         "maxFontTotalBytes": 4194304
       }
+    },
+    "flapcred-keccak-cpu-v1": {
+      "surfaces": [
+        "vault-ui-7777",
+        "mini-app-7777",
+        "mini-app-8888"
+      ],
+      "description": "Experimental host-owned CPU computation. Declaration requests review, not execution permission.",
+      "dependencies": {},
+      "allowedImports": [],
+      "sourceExtensions": [],
+      "shaderExtensions": [],
+      "assetExtensions": [],
+      "safeBrowserMembers": {},
+      "limits": {
+        "maxWorkers": 1,
+        "maxDurationMs": 30000,
+        "maxHashes": 10000000
+      }
     }
   }
 }

@@ -60,3 +60,5 @@ export type {
   VaultRuntimeContextOverrides,
   VaultRuntimeExtraConfig,
 } from "./types";
+
+export * from "./compute";

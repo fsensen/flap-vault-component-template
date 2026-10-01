@@ -591,5 +591,27 @@
     "addressCopied": "地址已複製",
     "tokenUnavailableTitle": "Token 不可用",
     "tokenUnavailableDescription": "当前 Token 无法在预览环境加载。请让开发者检查 Token CA、链，以及 manifest 里的 factory/Vault 绑定，确认后再使用这个 Vault UI。"
+  },
+  "powDemo": {
+    "title": "CPU PoW · 本地 SDK 测试",
+    "note": "使用模拟数据，不发起钱包交易。单个 Worker，最多运行 30 秒，页面隐藏时停止。",
+    "start": "开始 CPU 测试",
+    "stop": "停止",
+    "reset": "重置宿主上下文",
+    "hashes": "已计算哈希",
+    "verified": "已独立验证结果",
+    "heartbeat": "界面心跳",
+    "status": "状态",
+    "ready": "就绪",
+    "running": "运行中",
+    "stopped": "已停止",
+    "completed": "已达到运行上限",
+    "error": "出错",
+    "language": "English",
+    "scope": "宿主批准的模拟范围：链 97",
+    "loading": "正在准备运行环境",
+    "unavailable": "计算能力不可用",
+    "nonce": "最近验证通过的 nonce",
+    "digest": "完整 Keccak-256 哈希"
   }
 }

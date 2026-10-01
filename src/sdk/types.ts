@@ -1,4 +1,5 @@
 import type { Abi, PublicClient } from "viem";
+import type { FlapCompute } from "./compute";
 
 export type Address = `0x${string}`;
 
@@ -208,7 +209,7 @@ export interface ManifestExternalContract {
 
 export type VaultManifestLayout = "fullscreen";
 export type VaultManifestMode = "mini-app";
-export type VaultManifestCapability = "three-r3f-v1";
+export type VaultManifestCapability = "three-r3f-v1" | "flapcred-keccak-cpu-v1";
 export type VaultArtifactSurface = "vault-ui" | "launch-config";
 export interface VaultManifestDisplayTitle {
   zh: string;
@@ -431,6 +432,8 @@ export interface FlapWallet {
 }
 
 export interface FlapVaultSdk {
+  /** Optional for compatibility with older hosts; unavailable unless the host opts in. */
+  compute?: FlapCompute;
   context: VaultRuntimeContext;
   i18n: FlapI18n;
   notify: FlapNotify;

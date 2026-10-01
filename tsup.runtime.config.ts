@@ -30,7 +30,13 @@ export default defineConfig({
   target: "es2020",
   outDir: "dist/vault-runtime",
   external: runtimeExternals,
+  // Keep host RPC and the fixed worker self-contained; consumers need no Comlink import.
+  noExternal: ["comlink"],
   treeshake: true,
+  // Published JS must import its JSX runtime instead of relying on a host React global.
+  esbuildOptions(options) {
+    options.jsx = "automatic";
+  },
   outExtension() {
     return {
       js: ".js",

@@ -3539,6 +3539,7 @@ function checkManifest(manifest, folderName) {
   }
   if (manifest.capabilities !== undefined) {
     const knownProfiles = loadMiniAppCapabilityConfig(ROOT).profiles || {};
+    if (capabilities.includes("flapcred-keccak-cpu-v1")) issues.push(issue(WARNING, "manual-review/pow-compute", "Experimental CPU PoW needs explicit host approval, resource limits, miner provenance and scope review. Worker/WebGPU APIs remain forbidden in components.", { field: "capabilities", capability: "flapcred-keccak-cpu-v1" }));
     if (!Array.isArray(manifest.capabilities) || manifest.capabilities.length === 0 || manifest.capabilities.some((value) => typeof value !== "string" || !value.trim())) {
       issues.push(issue(BLOCKING, "manifest-schema/invalid-capabilities", "manifest.capabilities must be a non-empty array of capability profile ids.", { field: "capabilities" }));
     } else {
